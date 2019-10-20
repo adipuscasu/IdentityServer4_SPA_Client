@@ -36,21 +36,7 @@ namespace IdentityServerAspNetIdentity
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddCors(options =>
-            //{
-            //    options.AddPolicy(MyAllowSpecificOrigins,
-            //        builder =>
-            //        {
-            //            builder.WithOrigins(
-            //                "https://localhost:44316",
-            //                "http://localhost:5000")
-            //                .AllowAnyHeader()
-            //                .AllowAnyMethod();
-            //        });
-            //});
-            // ********************
-            // Setup CORS
-            // ********************
+            
             var corsBuilder = new CorsPolicyBuilder();
             corsBuilder.AllowAnyHeader();
             corsBuilder.AllowAnyMethod();
@@ -62,6 +48,16 @@ namespace IdentityServerAspNetIdentity
             {
                 options.AddPolicy(MyAllowSpecificOrigins, corsBuilder.Build());
             });
+
+            services.AddHsts(options =>
+            {
+                options.Preload = true;
+                options.IncludeSubDomains = true;
+                options.MaxAge = TimeSpan.FromDays(60);
+                options.ExcludedHosts.Add("example.com");
+                options.ExcludedHosts.Add("www.example.com");
+            });
+
             services
                 .AddMvcCore()
                 .AddAuthorization()
@@ -128,7 +124,7 @@ namespace IdentityServerAspNetIdentity
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
-
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

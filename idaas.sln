@@ -3,13 +3,32 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EBB334BE-3402-464E-BAFF-B8042507FEF1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerAspNetIdentity", "src\IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "idaas.REST", "idaas.REST\idaas.REST.csproj", "{C10887AB-5C9F-4AF8-A095-BBDED279F31C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptClient", "JavaScriptClient\JavaScriptClient.csproj", "{4F94001D-288C-42FD-938B-316346B5FE52}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AngularWebApp", "AngularWebApp\", "{FC448490-2E3E-4EEE-95FC-53BADE50B02C}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_59035"
+		Debug.AspNetCompiler.PhysicalPath = "AngularWebApp\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59035\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_59035"
+		Release.AspNetCompiler.PhysicalPath = "AngularWebApp\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59035\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "59035"
+		SlnRelativePath = "AngularWebApp\"
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.REST_API", "IdentityServer4.REST_API\IdentityServer4.REST_API.csproj", "{0F239D4B-8493-450A-BA9A-516DB0F891E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,18 +52,6 @@ Global
 		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|x64.Build.0 = Release|Any CPU
 		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|x86.ActiveCfg = Release|Any CPU
 		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|x86.Build.0 = Release|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Debug|x64.Build.0 = Debug|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Debug|x86.Build.0 = Debug|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Release|x64.ActiveCfg = Release|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Release|x64.Build.0 = Release|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Release|x86.ActiveCfg = Release|Any CPU
-		{C10887AB-5C9F-4AF8-A095-BBDED279F31C}.Release|x86.Build.0 = Release|Any CPU
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -57,12 +64,33 @@ Global
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Release|x64.Build.0 = Release|Any CPU
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Release|x86.ActiveCfg = Release|Any CPU
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Release|x86.Build.0 = Release|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Debug|x64.Build.0 = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Debug|x86.Build.0 = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Release|x64.ActiveCfg = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Release|x64.Build.0 = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Release|x86.ActiveCfg = Debug|Any CPU
+		{FC448490-2E3E-4EEE-95FC-53BADE50B02C}.Release|x86.Build.0 = Debug|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Debug|x64.Build.0 = Debug|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Debug|x86.Build.0 = Debug|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|x64.ActiveCfg = Release|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|x64.Build.0 = Release|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90} = {EBB334BE-3402-464E-BAFF-B8042507FEF1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {638D0BF8-764D-47D2-9E5B-D4A88B403B9C}

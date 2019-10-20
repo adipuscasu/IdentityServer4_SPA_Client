@@ -23,13 +23,14 @@ namespace IdentityServerAspNetIdentity
         {
             return new ApiResource[]
             {
-                new ApiResource("api1", "My API #1")
+                new ApiResource("api", "My API #1"),
+                new ApiResource("resourceApi", "My Resource API"),
             };
         }
 
         public static IEnumerable<Client> GetClients()
         {
-          var spaClientUrl = "https://localhost:4200";
+          var spaClientUrl = "http://localhost:4200";
 
             return new[]
             {
@@ -65,10 +66,14 @@ namespace IdentityServerAspNetIdentity
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api1" }
                 },
+
+                // SPA client using code flow + pkce
                 new Client
                 {
-                    ClientId = "spaCodeClient",
-                    ClientName = "SPA Code Client",
+                    ClientId = "spa",
+                    ClientName = "SPA Client",
+                    ClientUri = "http://localhost:4200",
+
                     AccessTokenType = AccessTokenType.Jwt,
                     AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
                     IdentityTokenLifetime = 30,
@@ -77,6 +82,70 @@ namespace IdentityServerAspNetIdentity
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = true,
  
+                    AllowAccessTokensViaBrowser = true,
+
+                    RedirectUris =
+                    {
+                        "http://localhost:4200/assets/oidc-login-redirect.html",
+                        "http://localhost:4200/assets/silent-redirect.html",
+                    },
+
+                    PostLogoutRedirectUris = { "http://localhost:4200/index.html" },
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        $"{spaClientUrl}",
+                        "https://localhost:4200",
+                        "http://localhost:4200"
+                    },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api"
+                    }
+                },
+                new Client
+                {
+                    ClientId = "js",
+                    ClientName = "SPA Client",
+                    ClientUri = "http://localhost:50823",
+
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+
+                    RedirectUris =
+                    {
+                        "http://localhost:50823/callback.html",
+                    },
+
+                    PostLogoutRedirectUris = { "http://localhost:50823/index.html" },
+                    AllowedCorsOrigins = new List<string>
+                    {
+                        "http://localhost:50823"
+                    },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api"
+                    }
+                },
+                new Client
+                {
+                    ClientId = "spaCodeClient",
+                    ClientName = "SPA Code Client",
+                    AccessTokenType = AccessTokenType.Jwt,
+                    // RequireConsent = false,
+                    AccessTokenLifetime = 330,// 330 seconds, default 60 minutes
+                    IdentityTokenLifetime = 30,
+
+                    RequireClientSecret = false,
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+
                     AllowAccessTokensViaBrowser = true,
                     RedirectUris = new List<string>
                     {
@@ -104,34 +173,8 @@ namespace IdentityServerAspNetIdentity
                         "resourceApi"
                     }
                 },
-
-                // SPA client using code flow + pkce
-                new Client
-                {
-                    ClientId = "spa",
-                    ClientName = "SPA Client",
-                    ClientUri = "http://localhost:50823",
-
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-                    RequireClientSecret = false,
-
-                    RedirectUris =
-                    {
-                        "http://localhost:50823/callback.html",
-                    },
-
-                    PostLogoutRedirectUris = { "http://localhost:50823/index.html" },
-                    AllowedCorsOrigins = { "http://localhost:50823" },
-
-                    AllowedScopes =
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "api1"
-                    }
-                }
             };
+
         }
     }
 }

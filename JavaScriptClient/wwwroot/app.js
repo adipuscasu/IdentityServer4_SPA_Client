@@ -19,10 +19,10 @@ document.getElementById('logout').addEventListener('click', logout, false);
 // Instantiate UserManager from OIDC library
 var config = {
     authority: 'http://localhost:5000',
-    client_id: 'spa',
+    client_id: 'js',
     redirect_uri: 'http://localhost:50823/callback.html',
     response_type: 'code',
-    scope:'openid profile api1',
+    scope:'openid profile api',
     post_logout_redirect_uri : 'http://localhost:50823/index.html',
 };
 var mgr = new Oidc.UserManager(config);
