@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29409.12
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerAspNetIdentity", "src\IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JavaScriptClient", "JavaScriptClient\JavaScriptClient.csproj", "{4F94001D-288C-42FD-938B-316346B5FE52}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AngularWebApp", "AngularWebApp\", "{FC448490-2E3E-4EEE-95FC-53BADE50B02C}"
@@ -30,6 +28,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AngularWebApp", "AngularWeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer4.REST_API", "IdentityServer4.REST_API\IdentityServer4.REST_API.csproj", "{0F239D4B-8493-450A-BA9A-516DB0F891E9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerAspNetIdentity", "IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,18 +40,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Debug|x64.Build.0 = Debug|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Debug|x86.Build.0 = Debug|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|x64.ActiveCfg = Release|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|x64.Build.0 = Release|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|x86.ActiveCfg = Release|Any CPU
-		{F864DE0B-712F-4CB4-A86B-4A3A106C0B90}.Release|x86.Build.0 = Release|Any CPU
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F94001D-288C-42FD-938B-316346B5FE52}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -88,6 +76,18 @@ Global
 		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|x64.Build.0 = Release|Any CPU
 		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|x86.ActiveCfg = Release|Any CPU
 		{0F239D4B-8493-450A-BA9A-516DB0F891E9}.Release|x86.Build.0 = Release|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Debug|x64.Build.0 = Debug|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Debug|x86.Build.0 = Debug|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Release|x64.ActiveCfg = Release|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Release|x64.Build.0 = Release|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Release|x86.ActiveCfg = Release|Any CPU
+		{7B1B4C99-FD34-4F20-BD7B-C8E37869BEF6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
