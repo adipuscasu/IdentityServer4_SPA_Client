@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using IdentityServer4.DataModels.Security;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using IdentityServerAspNetIdentity.Models;
 
-namespace IdentityServerAspNetIdentity.Data
+namespace IdentityServer4.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
