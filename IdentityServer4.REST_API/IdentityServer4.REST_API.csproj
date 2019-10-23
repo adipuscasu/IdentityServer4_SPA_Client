@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\IdentityServer4.DataAccess\IdentityServer4.DataAccess.csproj" />
     <ProjectReference Include="..\IdentityServer4.DataModels\IdentityServer4.DataModels.csproj" />
+    <ProjectReference Include="..\IdentityServer4.DomainLogic\IdentityServer4.DomainLogic.csproj" />
   </ItemGroup>
 
 </Project>

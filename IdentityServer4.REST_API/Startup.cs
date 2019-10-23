@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
+using IdentityServer4.DomainLogic.Security;
 
 namespace IdentityServer4.REST_API
 {
@@ -32,8 +33,7 @@ namespace IdentityServer4.REST_API
             services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            
-            services.AddTransient<IUserRepository, UserRepository>();
+            AddRepositories(services);
 
             services.AddCors(options =>
             {
@@ -98,6 +98,8 @@ namespace IdentityServer4.REST_API
 
             services.AddAuthorization(options => { });
             
+            AddServices(services);
+
             services.AddControllers();
         }
 
@@ -122,6 +124,17 @@ namespace IdentityServer4.REST_API
             {
                 endpoints.MapControllerRoute(name: "api", "api/{controller}/{action}/{id?}");
             });
+        }
+
+        private static void AddRepositories(IServiceCollection services)
+        {
+            services.AddTransient<IUserRepository, UserRepository>();
+
+        }
+
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddTransient<IUserService, UserService>();
         }
     }
 }

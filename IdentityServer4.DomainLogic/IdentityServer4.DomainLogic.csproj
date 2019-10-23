@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdentityServer4.DataAccess\IdentityServer4.DataAccess.csproj" />
+    <ProjectReference Include="..\IdentityServer4.DataModels\IdentityServer4.DataModels.csproj" />
+  </ItemGroup>
+
+</Project>
