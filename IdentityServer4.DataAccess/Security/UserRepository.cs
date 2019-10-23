@@ -1,12 +1,12 @@
-﻿using IdentityServer4.DataModels;
-using IdentityServer4.DataModels.Security;
-using System.Collections.Generic;
+﻿using IdentityServer4.DataModels.Security;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 using EntityState = Microsoft.EntityFrameworkCore.EntityState;
 
 namespace IdentityServer4.DataAccess.Security
 {
-    public class UserRepository: IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _appDbContext;
 
@@ -15,31 +15,32 @@ namespace IdentityServer4.DataAccess.Security
             _appDbContext = appDbContext;
         }
 
-        public ApplicationUser GetUser(string id)
+        public async Task<ApplicationUser> GetById(string id)
         {
             var userFound = from user in _appDbContext.Users
-                where user.Id == id
-                select user;
-            return userFound.ToList().FirstOrDefault();
+                            where user.Id == id
+                            select user;
+            return await userFound
+                .FirstOrDefaultAsync();
         }
 
-        public IEnumerable<ApplicationUser> GetUsers()
+        public IQueryable<ApplicationUser> GetUsers()
         {
-            return _appDbContext.Users;
+            return _appDbContext.Users.AsNoTracking();
         }
 
-        public ApplicationUser AddUser(ApplicationUser user)
+        public async Task<ApplicationUser> AddUser(ApplicationUser user)
         {
             _appDbContext.Users.Add(user);
-            _appDbContext.SaveChanges();
+            await _appDbContext.SaveChangesAsync();
             return user;
         }
 
-        public ApplicationUser UpdateUser(ApplicationUser user)
+        public async Task<ApplicationUser> UpdateUser(ApplicationUser user)
         {
             var updatedUser = _appDbContext.Attach(user);
             updatedUser.State = EntityState.Modified;
-            _appDbContext.SaveChanges();
+            await _appDbContext.SaveChangesAsync();
             return user;
         }
     }
