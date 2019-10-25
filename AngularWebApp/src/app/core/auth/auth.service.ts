@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService implements OnDestroy {
-
+  currentUserValue: any = {};
   isAuthorized = false;
 
   constructor(

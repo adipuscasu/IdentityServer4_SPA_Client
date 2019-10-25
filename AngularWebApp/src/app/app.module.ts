@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -11,6 +10,11 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { CoreModule } from './core/core.module';
+import { AlertComponent } from './_components/alert';
+import { RegisterComponent } from './register/register.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ErrorInterceptor } from './core/error/error.interceptor';
+import { AuthInterceptor } from './core/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,23 +23,22 @@ import { CoreModule } from './core/core.module';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    AlertComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'unauthorized', component: UnauthorizedComponent },
-      { path: 'forbidden', component: UnauthorizedComponent },
-      { path: '**', redirectTo: '' }
-    ]),
-    CoreModule
+    CoreModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
