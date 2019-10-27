@@ -3,7 +3,6 @@
 
 
 using IdentityServer4.DataModels.Security;
-using IdentityServerAspNetIdentity.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;

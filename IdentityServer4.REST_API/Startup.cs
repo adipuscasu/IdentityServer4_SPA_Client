@@ -14,7 +14,10 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
+using IdentityServer4.DataAccess.Shared;
+using IdentityServer4.DataModels.Shared;
 using IdentityServer4.DomainLogic.Security;
+using IdentityServer4.DomainLogic.Shared;
 
 namespace IdentityServer4.REST_API
 {
@@ -129,12 +132,14 @@ namespace IdentityServer4.REST_API
         private static void AddRepositories(IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IGenericRepository<Country>, CountryRepository>();
 
         }
 
         private static void AddServices(IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICountryService, CountryService>();
         }
     }
 }
