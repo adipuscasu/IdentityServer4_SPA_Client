@@ -1,9 +1,15 @@
 using IdentityServer4.AccessTokenValidation;
 using IdentityServer4.DataAccess;
 using IdentityServer4.DataAccess.Security;
+using IdentityServer4.DataAccess.Shared;
+using IdentityServer4.DataModels.Security;
+using IdentityServer4.DataModels.Shared;
+using IdentityServer4.DomainLogic.Security;
+using IdentityServer4.DomainLogic.Shared;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,10 +20,6 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
-using IdentityServer4.DataAccess.Shared;
-using IdentityServer4.DataModels.Shared;
-using IdentityServer4.DomainLogic.Security;
-using IdentityServer4.DomainLogic.Shared;
 
 namespace IdentityServer4.REST_API
 {
@@ -36,6 +38,11 @@ namespace IdentityServer4.REST_API
             services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+        
+
             AddRepositories(services);
 
             services.AddCors(options =>
@@ -48,7 +55,10 @@ namespace IdentityServer4.REST_API
                             .AllowAnyHeader()
                             .SetIsOriginAllowedToAllowWildcardSubdomains()
                             .AllowAnyMethod()
-                            .WithOrigins("http://localhost:4200", "https://localhost:44340", "https://localhost:44341");
+                            .WithOrigins("http://localhost:4200",
+                                "https://localhost:4200",
+                                "https://localhost:44340",
+                                "https://localhost:44341");
                     });
             });
             var tokenValidationParameters = new TokenValidationParameters()
@@ -57,7 +67,7 @@ namespace IdentityServer4.REST_API
                 ValidAudience = "resourceApi",
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("resourceApiSecret")),
                 NameClaimType = "email",
-                RoleClaimType = "role", 
+                RoleClaimType = "role",
             };
 
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler
@@ -79,9 +89,9 @@ namespace IdentityServer4.REST_API
                 {
                     OnMessageReceived = context =>
                     {
-                        if ( ( context.Request.Path.Value.StartsWith("/weatherforecast")
+                        if ((context.Request.Path.Value.StartsWith("/weatherforecast")
                             || context.Request.Path.Value.StartsWith("/looney")
-                            || context.Request.Path.Value.StartsWith("/usersdm") 
+                            || context.Request.Path.Value.StartsWith("/usersdm")
                            )
                             && context.Request.Query.TryGetValue("token", out StringValues token)
                         )
@@ -100,10 +110,11 @@ namespace IdentityServer4.REST_API
             });
 
             services.AddAuthorization(options => { });
-            
+
             AddServices(services);
 
             services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
