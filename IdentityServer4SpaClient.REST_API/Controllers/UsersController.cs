@@ -26,7 +26,7 @@ namespace IdentityServer4SpaClient.REST_API.Controllers
         {
             if (!ModelState.IsValid)
             {
-                BadRequest(ModelState);
+               return BadRequest(ModelState);
             }
 
             var result = await _userManager.CreateAsync(user, user.Password);
