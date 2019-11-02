@@ -23,7 +23,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 
-namespace IdentityServer4_SPA_Client.REST_API
+namespace IdentityServer4SpaClient.REST_API
 {
     public class Startup
     {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace IdentityServer4_SPA_Client.REST_API
+namespace IdentityServer4SpaClient.REST_API
 {
     public class Program
     {

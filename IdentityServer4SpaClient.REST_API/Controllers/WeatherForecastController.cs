@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace IdentityServer4_SPA_Client.REST_API.Controllers
+namespace IdentityServer4SpaClient.REST_API.Controllers
 {
     [ApiController]
     [Authorize(AuthenticationSchemes = "Bearer")]

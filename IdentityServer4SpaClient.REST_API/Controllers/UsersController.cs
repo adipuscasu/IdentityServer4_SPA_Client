@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using IdentityServer4.DataModels.Dto;
 using IdentityServer4.DataModels.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IdentityServer4_SPA_Client.REST_API.Controllers
+namespace IdentityServer4SpaClient.REST_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -23,16 +22,24 @@ namespace IdentityServer4_SPA_Client.REST_API.Controllers
         
         [AllowAnonymous]
         [HttpPost("Register")]
-        public async Task<ApplicationUser> SaveUser(ApplicationUserDto user)
+        public async Task<IActionResult> SaveUser(RegisterBindingModel user)
         {
-            if(user == null)
-                throw new ArgumentException(nameof(user));
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
+
             var result = await _userManager.CreateAsync(user, user.Password);
 
-            if(!result.Succeeded)
-                throw new ApplicationException("Registration failed");
+            if (!result.Succeeded)
+            {
+                return BadRequest(result);
+            }
 
-            return user;
+            user.Password = null;
+            user.ConfirmPassword = null;
+
+            return Ok(user);
         }
     }
 }

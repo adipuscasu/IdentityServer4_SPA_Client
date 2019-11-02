@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IdentityServer4_SPA_Client.REST_API.Controllers
+namespace IdentityServer4SpaClient.REST_API.Controllers
 {
     [Route("api/[controller]")]
     [Authorize]

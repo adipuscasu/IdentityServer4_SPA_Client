@@ -3,7 +3,7 @@ using IdentityServer4.DataModels.Shared;
 using IdentityServer4.DomainLogic.Shared;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IdentityServer4_SPA_Client.REST_API.Controllers
+namespace IdentityServer4SpaClient.REST_API.Controllers
 {
    
     [Route("api/[controller]")]
