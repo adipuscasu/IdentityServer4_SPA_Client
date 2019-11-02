@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdentityServer4SpaClient.DataAccess\IdentityServer4SpaClient.DataAccess.csproj" />
+    <ProjectReference Include="..\IdentityServer4SpaClient.DataModels\IdentityServer4SpaClient.DataModels.csproj" />
+  </ItemGroup>
+
+</Project>
