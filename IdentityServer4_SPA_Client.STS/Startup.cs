@@ -3,6 +3,7 @@
 
 
 using IdentityServer4.DataModels.Security;
+using IdentityServer4_SPA_Client.DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -13,8 +14,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using IdentityServer4.DataAccess;
-using IdentityServer4_SPA_Client.DataAccess;
 
 namespace IdentityServerAspNetIdentity
 {
@@ -23,7 +22,7 @@ namespace IdentityServerAspNetIdentity
         public IWebHostEnvironment Environment { get; }
         public IConfiguration Configuration { get; }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+        readonly string _myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 
         public Startup(IWebHostEnvironment environment, IConfiguration configuration)
@@ -44,7 +43,7 @@ namespace IdentityServerAspNetIdentity
 
             services.AddCors(options =>
             {
-                options.AddPolicy(MyAllowSpecificOrigins, corsBuilder.Build());
+                options.AddPolicy(_myAllowSpecificOrigins, corsBuilder.Build());
             });
 
             services.AddHsts(options =>
@@ -127,7 +126,7 @@ namespace IdentityServerAspNetIdentity
 
             app.UseRouting();
             app.UseIdentityServer();
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(_myAllowSpecificOrigins);
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
