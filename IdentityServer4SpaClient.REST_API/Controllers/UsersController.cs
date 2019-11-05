@@ -24,16 +24,12 @@ namespace IdentityServer4SpaClient.REST_API.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> SaveUser(RegisterBindingModel user)
         {
-            if (!ModelState.IsValid)
-            {
-               return BadRequest(ModelState);
-            }
 
             var result = await _userManager.CreateAsync(user, user.Password);
 
             if (!result.Succeeded)
             {
-                return BadRequest(result);
+                return BadRequest(result.Errors);
             }
 
             user.Password = null;

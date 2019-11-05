@@ -37,6 +37,7 @@ export class ApiRejectionHandlerService {
   }
 
   public handleError(err: any) {
+    console.log('error: ', err);
     if (!err.error || !err.error.message) {
       err.error = { message: 'ERRORS.UNKNOWN_ERROR' };
     }

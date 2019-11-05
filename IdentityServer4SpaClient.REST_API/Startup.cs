@@ -12,6 +12,7 @@ using IdentityServer4.DomainLogic.Security;
 using IdentityServer4.DomainLogic.Shared;
 using IdentityServer4_SPA_Client.DataAccess;
 using IdentityServer4_SPA_Client.DataAccess.Security;
+using IdentityServer4SpaClient.REST_API.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -114,6 +115,8 @@ namespace IdentityServer4SpaClient.REST_API
             services.AddAuthorization(options => { });
 
             AddServices(services);
+            // adds model validation
+            services.AddMvc(config => { config.Filters.Add(new ValidateModelAttribute()); });
 
             services.AddControllers();
 
