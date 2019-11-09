@@ -51,7 +51,19 @@ namespace IdentityServer4_SPA_Client.DataAccess.Security
 
         IQueryable<ApplicationUser> IUserRepository.GetUsers()
         {
-            throw new System.NotImplementedException();
+            var users = _appDbContext.Users;
+            var cleanedUsers = from user in users
+                select new ApplicationUser
+                {
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Address = user.Address,
+                    GivenName = user.GivenName,
+                    Name = user.Name,
+                    PhoneNumber = user.PhoneNumber,
+                    WebSite = user.WebSite
+                };
+            return cleanedUsers;
         }
 
         Task<ApplicationUser> IUserRepository.AddUser(ApplicationUser user)

@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using System.Threading.Tasks;
 using IdentityServer4.AccessTokenValidation;
 using IdentityServer4.DataAccess;
 using IdentityServer4.DataAccess.Security;
@@ -17,12 +13,17 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace IdentityServer4SpaClient.REST_API
 {
@@ -116,10 +117,10 @@ namespace IdentityServer4SpaClient.REST_API
 
             AddServices(services);
             // adds model validation
-            services.AddMvc(config => { config.Filters.Add(new ValidateModelAttribute()); });
+            services.AddMvc(config => { config.Filters.Add(new ValidateModelAttribute()); })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             services.AddControllers();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -141,7 +142,7 @@ namespace IdentityServer4SpaClient.REST_API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(name: "api", "api/{controller}/{action}/{id?}");
+                endpoints.MapDefaultControllerRoute();
             });
         }
 

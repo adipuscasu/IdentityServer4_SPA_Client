@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using IdentityServer4.DataAccess.Security;
 using IdentityServer4.DataModels.Dto;
 using IdentityServer4.DataModels.Security;
 using Microsoft.AspNetCore.Authorization;
@@ -12,11 +13,16 @@ namespace IdentityServer4SpaClient.REST_API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUserRepository _userRepository;
 
 
-        public UsersController(UserManager<ApplicationUser> userManager)
+        public UsersController(
+            UserManager<ApplicationUser> userManager,
+            IUserRepository userRepository
+            )
         {
             _userManager = userManager;
+            _userRepository = userRepository;
         }
 
         
@@ -36,6 +42,13 @@ namespace IdentityServer4SpaClient.REST_API.Controllers
             user.ConfirmPassword = null;
 
             return Ok(user);
+        }
+
+    [Authorize(AuthenticationSchemes = "Bearer")]
+    [HttpGet]
+        public System.Linq.IQueryable<ApplicationUser> GetUsers()
+        {
+            return _userRepository.GetUsers();
         }
     }
 }

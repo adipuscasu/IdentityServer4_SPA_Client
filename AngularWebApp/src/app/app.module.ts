@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -19,6 +20,7 @@ import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { ApGridComponent } from './_components/grid/ap-grid/ap-grid.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -32,7 +34,8 @@ export function createTranslateLoader(http: HttpClient) {
     FetchDataComponent,
     UnauthorizedComponent,
     AlertComponent,
-    RegisterComponent
+    RegisterComponent,
+    ApGridComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -41,6 +44,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     FormsModule,
     CoreModule,
+    AgGridModule.withComponents([]),
     AppRoutingModule,
     TranslateModule.forRoot({
       loader: {
