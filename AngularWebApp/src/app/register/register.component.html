@@ -1,11 +1,11 @@
 <h2>Register</h2>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
     <div class="form-group">
-        <label for="email">Email/email</label>
-        <input type="search" formControlName="email" autocomplete="off" name="email"
-          class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <div *ngIf="submitted && registerForm.controls['email'].errors" class="invalid-feedback">
-            <div *ngIf="registerForm.controls['email'].errors.required">email is required</div>
+        <label for="userName">Username/Email</label>
+        <input type="search" formControlName="userName" autocomplete="off" name="userName"
+          class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" />
+        <div *ngIf="submitted && registerForm.controls['userName'].errors" class="invalid-feedback">
+            <div *ngIf="registerForm.controls['userName'].errors.required">Username is required</div>
         </div>
     </div>
     <div class="form-group">
