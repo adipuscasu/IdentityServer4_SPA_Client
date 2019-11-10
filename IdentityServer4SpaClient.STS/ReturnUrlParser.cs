@@ -15,7 +15,7 @@ namespace IdentityServer4SpaClient.STS
 {
     public class ReturnUrlParser: IReturnUrlParser
     {
-        public static class ProtocolRoutePaths
+        private static class ProtocolRoutePaths
         {
             public const string Authorize = "connect/authorize";
             public const string AuthorizeCallback = Authorize + "/callback";
@@ -84,18 +84,16 @@ namespace IdentityServer4SpaClient.STS
         //[DebuggerStepThrough]
         public static NameValueCollection ReadQueryStringAsNameValueCollection(this string url)
         {
-            if (url != null)
+            if (url == null) return new NameValueCollection();
+            var idx = url.IndexOf('?');
+            if (idx >= 0)
             {
-                var idx = url.IndexOf('?');
-                if (idx >= 0)
-                {
-                    url = url.Substring(idx + 1);
-                }
-                var query = QueryHelpers.ParseNullableQuery(url);
-                if (query != null)
-                {
-                    return query.AsNameValueCollection();
-                }
+                url = url.Substring(idx + 1);
+            }
+            var query = QueryHelpers.ParseNullableQuery(url);
+            if (query != null)
+            {
+                return query.AsNameValueCollection();
             }
 
             return new NameValueCollection();
