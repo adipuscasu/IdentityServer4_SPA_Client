@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostBinding, DoCheck } from '@angular/core';
 import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
-import { _ } from 'ag-grid-community';
 import { GridColumnType, GridTable, GridService } from '../grid.service';
+import * as _ from 'lodash';
+
 
 @Component({
   selector: 'app-ap-grid',
@@ -11,7 +12,7 @@ import { GridColumnType, GridTable, GridService } from '../grid.service';
 })
 export class ApGridComponent implements OnInit, DoCheck {
   private _oldRows: Array<any>;
-  public columnDefinitions: Array<Column> = [];
+  public columnDefinitions: Array<IColumn> = [];
   public gridColumnType: typeof GridColumnType = GridColumnType;
   @Input() public rows: Array<any>;
   @Input() public table: GridTable;
@@ -81,7 +82,7 @@ export class ApGridComponent implements OnInit, DoCheck {
       return moment(fieldValue.value).format(format);
   }
 
-  public onClick(button: ColumnAction, item: any) {
+  public onClick(button: IColumnAction, item: any) {
       const functionName = button.FunctionName;
 
       const callback = _.find(this.actionCallbacks, a => a.key === functionName);

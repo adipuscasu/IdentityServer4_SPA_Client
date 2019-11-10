@@ -1,4 +1,4 @@
-interface Column {
+interface IColumn {
   Name?: string;
   ProgId?: string;
   Field?: string;

@@ -21,6 +21,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { ApGridComponent } from './_components/grid/ap-grid/ap-grid.component';
+import { UsersModule } from './users/users.module';
+import { UsersComponent } from './users/users.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,7 +37,7 @@ export function createTranslateLoader(http: HttpClient) {
     UnauthorizedComponent,
     AlertComponent,
     RegisterComponent,
-    ApGridComponent
+    ApGridComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
     CoreModule,
     AgGridModule.withComponents([]),
     AppRoutingModule,
+    UsersModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
@@ -53,7 +56,7 @@ export function createTranslateLoader(http: HttpClient) {
           deps: [HttpClient]
       }
   }),
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},

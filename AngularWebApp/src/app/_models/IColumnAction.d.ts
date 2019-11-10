@@ -1,4 +1,4 @@
-interface ColumnAction {
+interface IColumnAction {
   FunctionName?: string;
     Icon?: Array<string>;
     Name?: string;

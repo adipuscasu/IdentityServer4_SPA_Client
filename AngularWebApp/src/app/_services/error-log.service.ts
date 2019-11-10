@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from './toast.service';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
