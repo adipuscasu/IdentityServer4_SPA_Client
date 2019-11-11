@@ -1,13 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../_models';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { config } from 'process';
 
 
 @Injectable({ providedIn: 'root' })
 
 export class UserService {
-  private readonly registrationApiUrl: string = 'https://localhost:44341/api/Users';
+  private readonly _usersApiUrl: string = 'https://localhost:44341/api/Users';
 
   constructor(
     private http: HttpClient,
@@ -15,15 +14,24 @@ export class UserService {
     @Inject('API_URL') private apiUrl: string,
     ) { }
 
-  getAll() {
-    return this.http.get<User[]>(`${config.apiUrl}/users`);
+  getAll(freeText: string = '', includeDeactivated: boolean = false) {
+    let httpParams: HttpParams = new HttpParams({
+      fromObject: {
+          includeDeactivated: includeDeactivated ? 'true' : 'false'
+      }
+  });
+
+  if (freeText)
+      httpParams = httpParams.append('freeText', freeText);
+
+    return this.http.get<IUser[]>(`${this._usersApiUrl}`, {params: httpParams});
   }
 
-  register(user: User) {
-    return this.http.post(`${this.registrationApiUrl}/register`, user);
+  register(user: IUser) {
+    return this.http.post(`${this._usersApiUrl}/register`, user);
   }
 
   delete(id: number) {
-    return this.http.delete(`${config.apiUrl}/users/${id}`);
+    return this.http.delete(`${this._usersApiUrl}${id}`);
   }
 }
