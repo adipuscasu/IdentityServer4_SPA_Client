@@ -1,0 +1,15 @@
+<ng-container *ngFor="let button of buttons">
+  <button
+    [ngClass]="button.Css"
+    isspaClickStopPropagation
+    class="mr-1"
+    *isspaRoleContentDisplay="button.Role"
+    (click)="onClick(button)"
+  >
+    <fa-icon
+      *ngIf="button.Icon && button.Icon.length > 0"
+      [icon]="button.Icon"
+    ></fa-icon>
+    {{ button.Name | translate }}
+  </button>
+</ng-container>

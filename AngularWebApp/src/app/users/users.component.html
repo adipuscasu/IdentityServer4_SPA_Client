@@ -56,81 +56,20 @@
    *ngIf="listReady">
   <div class="card-body d-flex">
       <!-- TABLE -->
-      <ng-template [icBreakpoint]="[bootstrapBreakpoint.Large, bootstrapBreakpoint.XLarge]"
-                   [icBreakpointElse]="smallGrid">
-          <ic-grid [table]="gridTable.User"
-                   rowSelection="single"
-                   (selected)="onUserClick($event)"
-                   [rows]="users"></ic-grid>
+      <isspa-grid [table]="gridTable.User"
+      rowselection="single"
+      (selected)="onUserClick($event)"
+      [rows]="users"></isspa-grid>
+      <ng-template [isspaBreakpoint]="true || [bootstrapBreakpoint.Small, bootstrapBreakpoint.Medium, bootstrapBreakpoint.Large, bootstrapBreakpoint.XLarge]"
+                   [isspaBreakpointElse]="smallGrid">
+
       </ng-template>
-      <!-- LIST FOR SMALL SCREENS -->
       <ng-template #smallGrid>
-          <ic-sm-grid [table]="gridTable.User"
-                      (selected)="onUserClick($event)"
-                      [rows]="users"></ic-sm-grid>
+          LIST FOR SMALL SCREENS
+
+          <!-- <isspa-grid [table]="gridtable.user"
+                      (selected)="onuserclick($event)"
+                      [rows]="users"></isspa-grid> -->
       </ng-template>
-
-
-      <!-- <div class="row d-block d-lg-none">
-          <div class="list-group">
-              <ng-template [ngIf]="!users || users.length == 0"
-                           [ngIfElse]="showUsersSmall">
-                  <h4 class="text-center">
-                      {{'USER.NO_USERS' | translate}}
-                  </h4>
-              </ng-template>
-              <ng-template #showUsersSmall>
-                  <button type="button"
-                          *ngFor="let user of users"
-                          [routerLink]="['../user', user.id]"
-                          class="list-group-item list-group-item-action">
-                      <p>
-                          <b>
-                              {{'USER.ID' | translate}}
-                          </b>
-                          <span>
-                              {{user.id}}
-                          </span>
-
-                          <br>
-
-                          <b>
-                              {{'USER.NAME' | translate}}
-                          </b>
-                          <span>
-                              {{user.fullName}}
-                          </span>
-
-                          <br>
-
-                          <b>
-                              {{'USER.USERNAME' | translate}}
-                          </b>
-                          <span>
-                              {{user.username}}
-                          </span>
-
-                          <br>
-
-                          <b>
-                              {{'USER.ADDRESS' | translate}}
-                          </b>
-                          <span>
-                              {{user.address?.fullAddress ? user.address.fullAddress : ' - '}}
-                          </span>
-
-                          <br>
-
-                          <b>
-                              {{'USER.MOBILE' | translate}}
-                          </b>
-                          <span>
-                              {{user.mobile ? user.mobile : ' - '}}
-                          </span>
-                      </p>
-                  </button>
-              </ng-template>
-          </div>
-      </div> -->
   </div>
 </div>

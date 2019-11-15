@@ -1,0 +1,11 @@
+<ng-template [ngIf]="active"
+             [ngIfElse]="inactive">
+    <fa-icon [icon]="trueIcon"
+             *ngIf="trueIcon"
+             class="{{trueIconColor}}"></fa-icon>
+</ng-template>
+<ng-template #inactive>
+    <fa-icon [icon]="falseIcon"
+             *ngIf="falseIcon"
+             class="{{falseIconColor}}"></fa-icon>
+</ng-template>

@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
+import { InViewportModule } from 'ng-in-viewport';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -22,13 +24,10 @@ import { AuthInterceptor } from './core/auth/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ApGridComponent } from './_components/grid/ap-grid/ap-grid.component';
 import { UsersModule } from './users/users.module';
-import { UsersComponent } from './users/users.component';
-import { SmGridComponent } from './_components/sm-grid/sm-grid.component';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FONT_AWESOME_ICONS_BOLD } from './font-awesome-bold';
-import { LanguageComponent } from './_components/language/language.component';
+import { SharedModule } from './shared/shared.module';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -44,15 +43,17 @@ const COMPONENTS = [
   UnauthorizedComponent,
   AlertComponent,
   RegisterComponent,
-  ApGridComponent,
-  SmGridComponent,
 ];
 
 const MODULES = [
   UsersModule,
   AppRoutingModule,
+  CoreModule,
+  SharedModule
+];
 
-]
+const DIRECTIVES = [
+];
 
 const VENDOR_MODULES = [
   TranslateModule.forRoot({
@@ -88,7 +89,7 @@ const VENDOR_MODULES = [
 @NgModule({
   declarations: [
     COMPONENTS,
-    LanguageComponent
+    DIRECTIVES,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -96,8 +97,9 @@ const VENDOR_MODULES = [
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    CoreModule,
     AgGridModule.withComponents([]),
+    InViewportModule,
+
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -107,6 +109,7 @@ const VENDOR_MODULES = [
     }),
     MODULES,
     ToastrModule.forRoot(), // ToastrModule added
+    CoreModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

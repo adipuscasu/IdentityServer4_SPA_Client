@@ -5,7 +5,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { RegisterComponent } from './register';
-import { AuthGuard } from './_helpers/auth.guard';
+import { AuthGuard } from './core/auth/auth.guard';
 import { UsersComponent } from './users/users.component';
 
 

@@ -1,12 +1,13 @@
-import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy, TemplateRef  } from '@angular/core';
 import { Subject } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { GridTable } from '../_components/grid/grid.service';
 import { BootstrapBreakpoints } from '../core/css-breakpoints';
 import { TitleService } from '../_services/title.service';
 import { Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
 import { takeUntil } from 'rxjs/operators';
+import { GridTable } from '../shared/grid/grid.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'isspa-users',
@@ -29,6 +30,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     private readonly _userService: UserService,
     private readonly _formBuilder: FormBuilder,
 
+
   ) {
     this.initSearchFormGroup();
     this.getUsers();
@@ -40,6 +42,9 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.onChanges();
   }
 
+  public isAccountReadOnly(): boolean {
+    return true;
+  }
   private onChanges(): void {
     this.searchFormGroup.controls['includeDeactivated']
       .valueChanges.pipe(takeUntil(this._destroy$))
@@ -63,6 +68,14 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.users = await this._userService.getAll(freeText, includeDeactivated).toPromise();
 
     this.listReady = true;
+    console.log('listReady: ', this.users);
+  }
+
+  public onUserClick(user: IUser = null) {
+    if (_.isNil(user))
+      this._router.navigate(['user']);
+    else
+      this._router.navigate(['user', user.id]);
   }
 
   private initSearchFormGroup() {

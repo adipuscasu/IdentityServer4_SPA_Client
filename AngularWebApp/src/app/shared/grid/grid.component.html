@@ -1,0 +1,23 @@
+<div class="d-flex flex-row flex-grow-1">
+  <div class="flex-grow-1 overflow-hidden">
+      <ag-grid-angular class="ag-theme-material w-100 h-100"
+                       icAgGridInView
+                       icAgGridResize
+                       inViewport
+                       [inViewportOptions]="{ threshold: [0] }"
+                       rowDragManaged="true"
+                       [columnDefs]="agColumnDefinitions"
+                       (gridReady)="onGridReady($event)"
+                       (paginationChanged)="onPaginationChanged($event)"
+                       [frameworkComponents]="frameworkComponents"
+                       [pagination]="pagination"
+                       [rowHeight]="40"
+                       [enableBrowserTooltips]="true"
+                       [context]="gridContext"
+                       [paginationPageSize]="paginationSize"
+                       [suppressPaginationPanel]="true"
+                       [rowSelection]="rowSelection"
+                       (selectionChanged)="onSelectionChanged()">
+      </ag-grid-angular>
+  </div>
+</div>
