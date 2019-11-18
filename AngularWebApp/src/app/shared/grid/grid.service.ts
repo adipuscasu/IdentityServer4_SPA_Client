@@ -20,7 +20,15 @@ export class GridService {
             progId: GridColumnType.Text
           }
         },
-
+        {
+          Name: 'USER.USERNAME',
+          ProgId: 'USER_NAME',
+          TranslateIt: true,
+          Field: 'username',
+          Type: {
+            progId: GridColumnType.Text
+          }
+        },
       ]
     }
   ];

@@ -1,11 +1,11 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, TemplateRef, ViewContainerRef, OnInit } from '@angular/core';
 import { Role } from '../permissions/permissions.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Directive({
   selector: '[isspaRoleContentDisplay]'
 })
-export class RoleContentDisplayDirective {
+export class RoleContentDisplayDirective implements OnInit  {
   @Input('isspaRoleContentDisplay')
   private readonly role: Role;
 

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InViewportModule } from 'ng-in-viewport';
-import { AgGridModule } from '@ag-grid-community/angular';
 
 import { GridComponent } from './grid/grid.component';
 import { GridService } from './grid/grid.service';
@@ -13,6 +12,7 @@ import { RoleContentDisplayDirective } from './directives/role-content-display.d
 import { PermissionsService } from './permissions/permissions.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { BreakpointDirective } from './directives/breakpoint.directive';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 
