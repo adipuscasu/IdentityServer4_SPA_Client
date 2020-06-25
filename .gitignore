@@ -328,3 +328,4 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/IdentityServer4SpaClient.STS/identityserver4_log.txt
