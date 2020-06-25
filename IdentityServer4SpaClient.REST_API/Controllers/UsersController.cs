@@ -25,7 +25,7 @@ namespace IdentityServer4SpaClient.REST_API.Controllers
             _userRepository = userRepository;
         }
 
-        
+
         [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<IActionResult> SaveUser(RegisterBindingModel user)
@@ -44,8 +44,8 @@ namespace IdentityServer4SpaClient.REST_API.Controllers
             return Ok(user);
         }
 
-    [Authorize(AuthenticationSchemes = "Bearer")]
-    [HttpGet]
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpGet]
         public System.Linq.IQueryable<ApplicationUser> GetUsers()
         {
             return _userRepository.GetUsers();

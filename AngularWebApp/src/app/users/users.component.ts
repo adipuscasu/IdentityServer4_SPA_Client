@@ -67,7 +67,6 @@ export class UsersComponent implements OnInit, OnDestroy {
     const freeText = this.searchFormGroup.controls['freeText'].value;
 
     this.users = await this._userService.getAll(freeText, includeDeactivated).toPromise();
-
     this.listReady = true;
     console.log('listReady: ', this.users);
   }

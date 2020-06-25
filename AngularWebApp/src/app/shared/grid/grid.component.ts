@@ -205,6 +205,7 @@ export class GridComponent implements OnInit, DoCheck {
   }
 
   private setCellRenderer(agColumnDefinition: AgGridColumn, columnDefinition: IColumn) {
+    console.log('in setCellrenderer: ', agColumnDefinition);
     if (!_.get(columnDefinition, 'Type.progId'))
       return;
 

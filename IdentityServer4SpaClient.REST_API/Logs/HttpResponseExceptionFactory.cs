@@ -2,8 +2,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityServer4SpaClient.REST_API.Logs
 {
@@ -18,7 +17,7 @@ namespace IdentityServer4SpaClient.REST_API.Logs
         /// </summary>
         /// <param name="exception">Caught exception to be forwarded</param>
         /// <returns>500 - Interval server error</returns>
-        public static HttpResponseException CreateFriendlyException(Exception exception)
+        public static ActionResult CreateFriendlyException(Exception exception)
         {
             var errorMessage = "ERRORS.UNKNOWN_ERROR";
 
@@ -31,7 +30,7 @@ namespace IdentityServer4SpaClient.REST_API.Logs
         /// </summary>
         /// <param name="exception">Caught exception to be forwarded</param>
         /// <returns>500 - Interval server error</returns>
-        public static HttpResponseException CreateDetailedException(Exception exception)
+        public static ActionResult CreateDetailedException(Exception exception)
         {
             var errorMessage = BuildErrorMessage(exception);
 
@@ -43,7 +42,7 @@ namespace IdentityServer4SpaClient.REST_API.Logs
         /// </summary>
         /// <param name="appException">Caught exception to be forwarded</param>
         /// <returns></returns>
-        public static HttpResponseException CreateException(AppException appException)
+        public static ActionResult CreateException(AppException appException)
         {
             var errorMessage = BuildErrorMessage(appException);
 
@@ -58,12 +57,9 @@ namespace IdentityServer4SpaClient.REST_API.Logs
         /// <param name="httpStatusCode">Http status code</param>
         /// <param name="message">Error message</param>
         /// <returns>Http error</returns>
-        private static HttpResponseException CreateException(HttpStatusCode httpStatusCode, string message)
+        private static ActionResult CreateException(HttpStatusCode httpStatusCode, string message)
         {
-            return new HttpResponseException(new HttpResponseMessage(httpStatusCode)
-            {
-                Content = new ObjectContent<HttpError>(new HttpError(message), new JsonMediaTypeFormatter())
-            });
+            return null;
         }
 
         private static HttpStatusCode GetStatusCodeFromType(AppException appException)
@@ -94,9 +90,9 @@ namespace IdentityServer4SpaClient.REST_API.Logs
         {
             string message;
 
-            if (exception is HttpResponseException responseException)
+            if (exception is HttpRequestException responseException)
             {
-                message = responseException.Response.ReasonPhrase;
+                message = responseException.Message.ToString();
             }
             else
             {
