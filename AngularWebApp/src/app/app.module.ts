@@ -109,7 +109,7 @@ const VENDOR_MODULES = [
     }),
     MODULES,
     ToastrModule.forRoot(), // ToastrModule added
-    CoreModule
+    CoreModule, FontAwesomeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
