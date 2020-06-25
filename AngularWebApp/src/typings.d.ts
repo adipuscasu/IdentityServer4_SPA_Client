@@ -30,3 +30,7 @@ interface ICountry {
   name?: string;
   abbreviation?: string;
 }
+interface IUser {
+  id?: number;
+  firstName?: string;
+}

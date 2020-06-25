@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, OnDestroy, TemplateRef  } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy, TemplateRef } from '@angular/core';
 import { Subject } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { BootstrapBreakpoints } from '../core/css-breakpoints';
@@ -83,5 +83,9 @@ export class UsersComponent implements OnInit, OnDestroy {
       freeText: [''],
       includeDeactivated: [false]
     });
+  }
+
+  clearSearch() {
+    console.log('clearing the search');
   }
 }

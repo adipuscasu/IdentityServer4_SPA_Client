@@ -23,8 +23,8 @@ export class UserService {
     let httpParams = new HttpParams();
 
     if (completedWizard === true)
-        httpParams = httpParams.append('completedWizard', true.toString());
+      httpParams = httpParams.append('completedWizard', true.toString());
 
     return this._httpClient.put<string>(`${this._usersApiUrl}/${user.id}`, user, { params: httpParams });
-}
+  }
 }
