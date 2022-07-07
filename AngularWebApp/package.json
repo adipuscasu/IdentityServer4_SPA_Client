@@ -30,7 +30,7 @@
     "angular-auth-oidc-client": "^10.0.15",
     "bootstrap": "^4.5.0",
     "lodash": "^4.17.21",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "ng-in-viewport": "^6.1.0",
     "ngx-toastr": "^11.3.3",
     "rxjs": "~6.5.5",
